@@ -1,6 +1,6 @@
 import Currency from './3-currency';
 
-class Pricing {
+export default class Pricing {
   constructor(amount, currency) {
     this._amount = amount;
     this._currency = currency;
@@ -20,8 +20,12 @@ class Pricing {
     return this._currency;
   }
 
-  set currency(value) {
-    this._currency = value;
+  // setter
+  set currency(currency) {
+    this._currency = currency;
+    if (!(currency instanceof Currency)) {
+      throw new TypeError('Currency must be a valid currency');
+    }
   }
 
   // Method to display full price
@@ -34,5 +38,3 @@ class Pricing {
     return amount * conversionRate;
   }
 }
-
-export default Pricing;
